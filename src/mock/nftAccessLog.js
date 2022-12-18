@@ -7,14 +7,14 @@ dayBeforeYesterday.setDate(yesterday.getDate() - 5);
 
 const nftAccessLog = [
   {
-    title: "Regular Health Check NFT",
+    title: "Regular Health Check",
     date: new Date(),
     reason: "For emergency",
     accessorName: "Summer Lim",
     redirect: false,
   },
   {
-    title: "Regular Health Check NFT",
+    title: "Regular Health Check",
     date: yesterday,
     reason: "Review before visit",
     accessorName: "Aaron Khor",

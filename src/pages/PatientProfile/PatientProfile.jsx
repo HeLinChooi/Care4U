@@ -7,8 +7,8 @@ import MDBreadcrumbs from "@Components/MDBreadcrumbs";
 import MDNFTList from "@Components/MDNFTList";
 import nftAccessLog from "@Mock/nftAccessLog";
 
-const NFT = () => {
-  const title = "Regular Health Check NFT";
+const PatientProfile = () => {
+  const title = "Regular Health Check Patient Profile";
   const description = "The patient has suffered for weeks";
   return (
     <PageLayout>
@@ -16,7 +16,7 @@ const NFT = () => {
         <Grid item xs={12} sx={{ m: 2, mb: 0 }}>
           <MDBreadcrumbs
             list={[{ label: "Home", link: "/" }]}
-            currentDirectory="NFT"
+            currentDirectory="Patient Profile"
           />
           <Typography
             variant="h3"
@@ -32,8 +32,8 @@ const NFT = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <MDNFTList
-            title="NFT Access Log"
-            list={nftAccessLog.filter((log) => log.title === title)}
+            title="Medical Record"
+            list={nftAccessLog}
             icon="history"
             noViewMore
           />
@@ -43,4 +43,4 @@ const NFT = () => {
   );
 };
 
-export default NFT;
+export default PatientProfile;

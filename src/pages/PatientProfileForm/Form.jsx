@@ -55,7 +55,7 @@ const Form = ({ onSubmit = () => {} }) => {
         </Grid>
         <Grid item xs={12} container justifyContent="flex-end">
           <Button variant="contained" onClick={onSubmit}>
-            Mint and Send to Patient
+            Done
           </Button>
         </Grid>
       </Grid>

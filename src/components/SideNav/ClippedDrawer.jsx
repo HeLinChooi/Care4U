@@ -1,16 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { styled, alpha } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
 import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
-const drawerWidth = 240;
 
 function HeaderIcon({ icon, handleClickHeaderNav }) {
   return (

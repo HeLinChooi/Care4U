@@ -8,12 +8,7 @@ import nftAccessLog from "@Mock/nftAccessLog";
 const Home = () => {
   return (
     <PageLayout title={"Home"}>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="center"
-        style={{ minWidth: "100vw" }}
-      >
+      <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12} md={6}>
           <MDNFTList title="Patient Profile" list={nftAccessLog} icon="list" />
         </Grid>

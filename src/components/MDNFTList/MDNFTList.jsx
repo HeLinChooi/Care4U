@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import { Link, useNavigate } from "react-router-dom";
 import md from "@Mock/boxShadow";
+import { Button } from "@mui/material";
 
 const MDNFTList = ({ title, list = [], icon, noViewMore = false }) => {
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ const MDNFTList = ({ title, list = [], icon, noViewMore = false }) => {
         </Box>
         {!noViewMore && (
           <>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <Typography variant="body2">View More</Typography>
-            </Link>
+            <Button variant="contained" onClick={() => navigate("/create")}>
+              Create
+            </Button>
           </>
         )}
       </Grid>

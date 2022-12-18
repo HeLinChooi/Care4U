@@ -12,16 +12,17 @@ const PageTitle = ({ title }) => {
   if (!title) return <></>;
   return (
     <>
-      <Box sx={{ mb: 1, ml: { xs: 0 } }}>
+      <Grid sx={{ mb: 1 }} justifyContent="center">
         <Typography
           variant="h2"
           fontWeight="bold"
           textTransform="capitalize"
-          sx={{ pt: 1 }}
+          sx={{ pt: 1, m: { md: "auto" } }}
+          width="50%"
         >
           {title}
         </Typography>
-      </Box>
+      </Grid>
     </>
   );
 };
@@ -31,9 +32,7 @@ const PageLayout = ({ children, title }) => {
   if (isMdUp) {
     return (
       <ClippedDrawer title={title}>
-        <Grid justifyContent="center" style={{ minWidth: "100vw" }}>
-          <PageTitle title={title} />
-        </Grid>
+        <PageTitle title={title} />
         {children}
       </ClippedDrawer>
     );

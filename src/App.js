@@ -1,8 +1,8 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "@Pages/Home";
-import NFT from "@Pages/NFT";
-import NFTCreation from "@Pages/NFTCreation";
+import PatientProfile from "@Pages/PatientProfile";
+import PatientProfileForm from "@Pages/PatientProfileForm";
 import CssBaseline from "@mui/material/CssBaseline";
 
 function App() {
@@ -11,8 +11,12 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path={"/"} element={<Home />} />
-        <Route path={"/nft"} element={<NFT />} />
-        <Route path={"/nft-creation"} element={<NFTCreation />} />
+        <Route path={"/patient/:profileId"} element={<PatientProfile />} />
+        <Route path={"/create"} element={<PatientProfileForm />} />
+        <Route
+          path={"/patient/:profileId/create"}
+          element={<PatientProfileForm />}
+        />
       </Routes>
     </>
   );
