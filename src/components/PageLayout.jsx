@@ -1,5 +1,4 @@
 import React from "react";
-import BottomNavigation from "@Components/BottomNavigation";
 import Header from "@Components/Header";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -7,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import ClippedDrawer from "@Components/SideNav/ClippedDrawer";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
 
 const PageTitle = ({ title }) => {
   if (!title) return <></>;
@@ -31,7 +31,9 @@ const PageLayout = ({ children, title }) => {
   if (isMdUp) {
     return (
       <ClippedDrawer title={title}>
-        <PageTitle title={title} />
+        <Grid justifyContent="center" style={{ minWidth: "100vw" }}>
+          <PageTitle title={title} />
+        </Grid>
         {children}
       </ClippedDrawer>
     );
@@ -51,7 +53,6 @@ const PageLayout = ({ children, title }) => {
         <PageTitle title={title} />
         {children}
       </Box>
-      <BottomNavigation />
     </>
   );
 };
