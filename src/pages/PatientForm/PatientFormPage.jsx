@@ -5,17 +5,7 @@ import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
 import Form from "./Form";
 
-// Smart Contract
-import {
-  nftaddress,
-  nftmarketaddress,
-  nftmarketABI,
-  nftaddressABI,
-} from "../utils/constants";
-import { ethers } from "ethers";
-import Web3Modal from "web3modal";
-
-const PatientProfileForm = () => {
+const PatientForm = () => {
   let currentAccount, sendTransaction, formData;
   const navigate = useNavigate();
 
@@ -39,7 +29,7 @@ const PatientProfileForm = () => {
   }
 
   return (
-    <PageLayout title={"Create Patient Profile"}>
+    <PageLayout title={"Create Patient"}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           {/* <Form onSubmit={onSubmit} /> */}
@@ -53,4 +43,4 @@ const PatientProfileForm = () => {
   );
 };
 
-export default PatientProfileForm;
+export default PatientForm;

@@ -1,9 +1,10 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "@Pages/Home";
-import PatientProfile from "@Pages/PatientProfile";
-import PatientProfileForm from "@Pages/PatientProfileForm";
+import Patient from "@Pages/Patient";
+import PatientForm from "@Pages/PatientForm";
 import CssBaseline from "@mui/material/CssBaseline";
+import MedicalRecordForm from "@Pages/MedicalRecordForm";
 
 function App() {
   return (
@@ -11,11 +12,11 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path={"/"} element={<Home />} />
-        <Route path={"/patient/:profileId"} element={<PatientProfile />} />
-        <Route path={"/create"} element={<PatientProfileForm />} />
+        <Route path={"/patient/:profileId"} element={<Patient />} />
+        <Route path={"/create"} element={<PatientForm />} />
         <Route
           path={"/patient/:profileId/create"}
-          element={<PatientProfileForm />}
+          element={<MedicalRecordForm />}
         />
       </Routes>
     </>

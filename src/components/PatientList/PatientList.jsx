@@ -1,5 +1,5 @@
 import React from "react";
-import PatientProfileListItem from "./PatientProfileListItem";
+import PatientListItem from "./PatientListItem";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import md from "@Mock/boxShadow";
 import { Button } from "@mui/material";
 
-const PatientProfileList = ({ title, list = [], icon, noViewMore = false }) => {
+const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -48,7 +48,7 @@ const PatientProfileList = ({ title, list = [], icon, noViewMore = false }) => {
           const onClick = () => navigate(`/patient/${id}`);
           return (
             <React.Fragment key={idx}>
-              <PatientProfileListItem
+              <PatientListItem
                 id={id}
                 name={name}
                 phoneNo={phoneNo}
@@ -63,4 +63,4 @@ const PatientProfileList = ({ title, list = [], icon, noViewMore = false }) => {
   );
 };
 
-export default PatientProfileList;
+export default PatientList;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageLayout from "@Components/PageLayout";
 import Grid from "@mui/material/Grid";
-import PatientProfileList from "@Components/PatientProfileList";
+import PatientList from "@Components/PatientList";
 import "./Home.scss";
 
 const Home = () => {
@@ -23,11 +23,7 @@ const Home = () => {
     <PageLayout title={"Home"}>
       <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12} md={6}>
-          <PatientProfileList
-            title="Patient Profile"
-            list={patients}
-            icon="list"
-          />
+          <PatientList title="Patient Profile" list={patients} icon="list" />
         </Grid>
       </Grid>
     </PageLayout>

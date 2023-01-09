@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { useTheme } from "@mui/material/styles";
 
-const PatientProfileListItem = ({ id, name, phoneNo, onClick = () => {} }) => {
+const PatientListItem = ({ id, name, phoneNo, onClick = () => {} }) => {
   const theme = useTheme();
   return (
     <>
@@ -59,4 +59,4 @@ const PatientProfileListItem = ({ id, name, phoneNo, onClick = () => {} }) => {
   );
 };
 
-export default PatientProfileListItem;
+export default PatientListItem;

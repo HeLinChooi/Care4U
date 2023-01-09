@@ -4,10 +4,10 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import InfoCard from "@Components/InfoCard";
 import MDBreadcrumbs from "@Components/MDBreadcrumbs";
-import PatientProfileList from "@Components/PatientProfileList";
+import PatientList from "@Components/PatientList";
 import nftAccessLog from "@Mock/nftAccessLog";
 
-const PatientProfile = () => {
+const Patient = () => {
   const title = "Regular Health Check Patient Profile";
   const description = "The patient has suffered for weeks";
   return (
@@ -31,7 +31,7 @@ const PatientProfile = () => {
           <InfoCard description={description} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <PatientProfileList
+          <PatientList
             title="Medical Record"
             list={nftAccessLog}
             icon="history"
@@ -43,4 +43,4 @@ const PatientProfile = () => {
   );
 };
 
-export default PatientProfile;
+export default Patient;
