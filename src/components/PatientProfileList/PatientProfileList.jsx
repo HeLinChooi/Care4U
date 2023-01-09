@@ -1,16 +1,16 @@
 import React from "react";
-import MDListItem from "./MDListItem";
+import PatientProfileListItem from "./PatientProfileListItem";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import md from "@Mock/boxShadow";
 import { Button } from "@mui/material";
 
-const MDNFTList = ({ title, list = [], icon, noViewMore = false }) => {
+const PatientProfileList = ({ title, list = [], icon, noViewMore = false }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -44,17 +44,15 @@ const MDNFTList = ({ title, list = [], icon, noViewMore = false }) => {
         }}
       >
         {list.map((item, idx) => {
-          const { title, date, reason, accessorName, redirect } = item;
-          const onClick = redirect ? () => navigate("/nft") : () => {};
+          const { id, name, phoneNo } = item;
+          const onClick = () => navigate(`/patient/${id}`);
           return (
             <React.Fragment key={idx}>
-              <MDListItem
-                title={title}
-                date={date}
-                reason={reason}
-                accessorName={accessorName}
+              <PatientProfileListItem
+                id={id}
+                name={name}
+                phoneNo={phoneNo}
                 onClick={onClick}
-                redirect={redirect}
               />
               {idx !== list.length - 1 && <Divider />}
             </React.Fragment>
@@ -65,4 +63,4 @@ const MDNFTList = ({ title, list = [], icon, noViewMore = false }) => {
   );
 };
 
-export default MDNFTList;
+export default PatientProfileList;

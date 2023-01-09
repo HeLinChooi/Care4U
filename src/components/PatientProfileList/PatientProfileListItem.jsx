@@ -7,13 +7,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { useTheme } from "@mui/material/styles";
 
-const MDListItem = ({
-  title,
-  date,
-  reason,
-  accessorName,
-  onClick = () => {},
-}) => {
+const PatientProfileListItem = ({ id, name, phoneNo, onClick = () => {} }) => {
   const theme = useTheme();
   return (
     <>
@@ -28,18 +22,18 @@ const MDListItem = ({
         onClick={onClick}
       >
         <ListItemAvatar>
-          <Avatar alt={accessorName} src="/static/images/avatar/1.jpg" />
+          <Avatar alt={name} src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
           primary={
             <Grid container justifyContent="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="body1">{title}</Typography>
+                <Typography variant="body1">{name}</Typography>
               </Grid>
               <Grid item>
-                <Typography component="span" variant="body2">
+                {/* <Typography component="span" variant="body2">
                   {date.toLocaleDateString("en-gb")}
-                </Typography>
+                </Typography> */}
               </Grid>
             </Grid>
           }
@@ -51,12 +45,12 @@ const MDListItem = ({
                 variant="body2"
                 color="text.primary"
               >
-                {accessorName}
+                {phoneNo}
               </Typography>
-              <Typography component="span" variant="body2">
+              {/* <Typography component="span" variant="body2">
                 &nbsp;-&nbsp;
                 {reason}
-              </Typography>
+              </Typography> */}
             </React.Fragment>
           }
         />
@@ -65,4 +59,4 @@ const MDListItem = ({
   );
 };
 
-export default MDListItem;
+export default PatientProfileListItem;

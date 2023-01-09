@@ -36,7 +36,6 @@ By utilizing NFT and IPFS technologies, the medical journey could be complete, s
 ## Tools
 
 - React
-- Solidity for smart contract
 
 ## To run the app locally
 
