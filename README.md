@@ -1,6 +1,6 @@
 ## About
 
-HealthPath utilizes NFT and IPFS technologies to ensure a complete, secured and fully transparent medical journey for you.
+Care4U utilizes NFT and IPFS technologies to ensure a complete, secured and fully transparent medical journey for you.
 
 Submission for [NUS FinTech Hackathon 2022](https://nusfintechmonth.comp.nus.edu.sg/)
 

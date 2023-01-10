@@ -6,20 +6,20 @@ import PatientForm from "@Pages/PatientForm";
 import CssBaseline from "@mui/material/CssBaseline";
 import MedicalRecordForm from "@Pages/MedicalRecordForm";
 import LoginPage from "@Pages/Auth";
+import routes from "./router";
+import SignUpPage from "./pages/Auth/SignUpPage";
 
 function App() {
   return (
     <>
       <CssBaseline />
       <Routes>
-        <Route path={"/"} element={<LoginPage />} />
-        <Route path={"/home"} element={<Home />} />
-        <Route path={"/patient/:profileId"} element={<Patient />} />
-        <Route path={"/create"} element={<PatientForm />} />
-        <Route
-          path={"/patient/:profileId/create"}
-          element={<MedicalRecordForm />}
-        />
+        <Route path={routes.login} element={<LoginPage />} />
+        <Route path={routes.signUp} element={<SignUpPage />} />
+        <Route path={routes.home} element={<Home />} />
+        <Route path={routes.patient} element={<Patient />} />
+        <Route path={routes.createPatient} element={<PatientForm />} />
+        <Route path={routes.createRecord} element={<MedicalRecordForm />} />
       </Routes>
     </>
   );

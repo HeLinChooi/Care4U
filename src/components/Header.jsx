@@ -92,7 +92,7 @@ export default function Header() {
             sx={{ display: { xs: "block" }, pl: 2, cursor: "pointer" }}
             onClick={() => navigate("/")}
           >
-            HealthPath
+            Care4U
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
         </Toolbar>

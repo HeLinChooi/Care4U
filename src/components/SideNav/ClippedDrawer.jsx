@@ -4,8 +4,12 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useUserContext } from "../../UserContext";
+import routes from "../../router";
 
 function HeaderIcon({ icon, handleClickHeaderNav }) {
   return (
@@ -26,9 +30,15 @@ function HeaderIcon({ icon, handleClickHeaderNav }) {
 
 export default function ClippedDrawer({ children }) {
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { logout } = useUserContext();
 
-  const handleClickHeaderNav = (link) => () => {
-    navigate(link);
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -45,13 +55,33 @@ export default function ClippedDrawer({ children }) {
             sx={{ display: { xs: "block" }, pl: 2, cursor: "pointer" }}
             onClick={() => navigate("/")}
           >
-            HealthPath
+            Care4U
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <HeaderIcon
             icon={<AccountCircleIcon />}
-            handleClickHeaderNav={handleClickHeaderNav("/profile")}
+            handleClickHeaderNav={handleMenu}
           />
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={() => navigate(routes.myProfile)}>
+              My Profile
+            </MenuItem>
+            <MenuItem onClick={() => logout()}>Log out</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
       <Box component="main" sx={{ flexGrow: 1, p: 3, maxWidth: "calc(100%)" }}>

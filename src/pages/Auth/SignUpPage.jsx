@@ -14,11 +14,12 @@ import routes from "../../router";
 
 const schema = object({
   email: string().email(),
+  name: string(),
   password: string().min(1, "Password is required"),
 }); // zod schema
 
-const Login = () => {
-  const { userLogin, isLoading } = useUserContext();
+const SignUpPage = () => {
+  const { userSignUp, isLoading } = useUserContext();
   const navigate = useNavigate();
 
   const methods = useForm({
@@ -28,7 +29,7 @@ const Login = () => {
   const { handleSubmit, register, formState } = methods;
 
   const onSubmitHandler = async (values) => {
-    const success = await userLogin(values.email, values.password);
+    const success = await userSignUp(values.email, values.password);
     if (success) navigate("/home");
   };
 
@@ -43,7 +44,7 @@ const Login = () => {
             >
               <PersonIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
-                id="login-input"
+                id="sign-up-input"
                 label="Email Address"
                 variant="standard"
                 type="email"
@@ -54,6 +55,22 @@ const Login = () => {
             </Box>
             <p className={styles.error}>
               {formState.errors.email ? formState.errors.email.message : ""}
+            </p>
+          </div>
+          <div>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <LockIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+              <TextField
+                id="input-with-sx"
+                label="Name"
+                variant="standard"
+                type="text"
+                {...register("name")}
+                defaultValue="HL"
+              />
+            </Box>
+            <p className={styles.error}>
+              {formState.errors.name ? formState.errors.name.message : ""}
             </p>
           </div>
           <div>
@@ -84,16 +101,16 @@ const Login = () => {
             {isLoading ? (
               <CircularProgress color="alternate" size="2rem" />
             ) : (
-              "Login"
+              "Sign Up"
             )}
           </Button>
           <Button
             color="primary"
             variant="contained"
             sx={{ alignSelf: "end" }}
-            onClick={() => navigate(routes.signUp)}
+            onClick={() => navigate(routes.login)}
           >
-            {"Sign Up"}
+            {"Login"}
           </Button>
         </div>
       </form>
@@ -101,4 +118,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUpPage;
