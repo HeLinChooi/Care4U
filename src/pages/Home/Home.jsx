@@ -20,7 +20,7 @@ const Home = () => {
   };
 
   return (
-    <PageLayout title={"Home"}>
+    <PageLayout title="Home">
       <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12} md={6}>
           <PatientList title="Patient Profile" list={patients} icon="list" />

@@ -5,13 +5,15 @@ import Patient from "@Pages/Patient";
 import PatientForm from "@Pages/PatientForm";
 import CssBaseline from "@mui/material/CssBaseline";
 import MedicalRecordForm from "@Pages/MedicalRecordForm";
+import LoginPage from "@Pages/Auth";
 
 function App() {
   return (
     <>
       <CssBaseline />
       <Routes>
-        <Route path={"/"} element={<Home />} />
+        <Route path={"/"} element={<LoginPage />} />
+        <Route path={"/home"} element={<Home />} />
         <Route path={"/patient/:profileId"} element={<Patient />} />
         <Route path={"/create"} element={<PatientForm />} />
         <Route
