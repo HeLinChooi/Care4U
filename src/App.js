@@ -14,6 +14,7 @@ function App() {
         <Route path={"/"} element={<Home />} />
         <Route path={"/patient/:profileId"} element={<Patient />} />
         <Route path={"/create"} element={<PatientForm />} />
+        <Route path={"/edit/:profileId"} element={<PatientForm />} />
         <Route
           path={"/patient/:profileId/create"}
           element={<MedicalRecordForm />}
