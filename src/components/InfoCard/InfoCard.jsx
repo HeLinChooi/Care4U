@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -7,18 +7,52 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import md from "@Mock/boxShadow";
 
-const info = {
-  "First Symptoms": "Runny nose, sore throat",
-  Diagnosis: "Common cold",
-  // "Has the patient previously suffered from the same complaints": "Yes",
-  "Brief description of treatment already given": "medicine precribed",
-  // "Reason for referral for specialist treatment": "-",
-};
-
-const InfoCard = (props) => {
-  const { description } = props;
+const InfoCard = ({ props }) => {
+  const [data, setData] = useState(props);
+  const [medicalRecord, setMedicalRecord] = useState(null);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const currentPathArray = currentPath.split("/");
+  const profileId = currentPathArray[2];
+  const [medicalRecordId, setMedicalRecordId] = useState(null);
   const labels = [];
   const values = [];
+  const info = medicalRecordId
+    ? {
+        "First Symptoms": data.symptom,
+        Diagnosis: data.diagnosis,
+        // "Has the patient previously suffered from the same complaints": "Yes",
+        "Brief description of treatment already given": data.treatment,
+        // "Reason for referral for specialist treatment": "-",
+      }
+    : {
+        age: 80,
+        gender: true,
+        phoneNo: "012-3456799",
+        email: "GreatDickson@gmail.com",
+      };
+
+  useEffect(() => {
+    if (currentPathArray.length === 4) {
+      setMedicalRecordId(currentPathArray[3]);
+    } else {
+      setMedicalRecordId(null);
+    }
+  }, [currentPath]);
+
+  useEffect(() => {
+    if (medicalRecordId) {
+      getMedicalRecordsById();
+    }
+  }, [medicalRecordId]);
+
+  const getMedicalRecordsById = async () => {
+    const response = await fetch(
+      `http://localhost:8080/medical-record-by-id/${medicalRecordId}`
+    ).then((response) => response.json());
+    console.log("response", response);
+    setData(response);
+  };
+
   // Convert this form `objectKey` of the object key in to this `object key`
   Object.keys(info).forEach((el) => {
     if (el.match(/[A-Z\s]+/)) {
@@ -44,7 +78,11 @@ const InfoCard = (props) => {
         {label}: &nbsp;
       </Typography>
       <Typography variant="body1" fontWeight="regular" color="text">
-        {values[key]}
+        {values[key] === true
+          ? "Male"
+          : values[key] === false
+          ? "Female"
+          : values[key]}
       </Typography>
     </Box>
   ));
@@ -66,35 +104,39 @@ const InfoCard = (props) => {
         px={2}
       >
         <Typography variant="h6" fontWeight="bold" textTransform="capitalize">
-          {"Description"}
+          {medicalRecordId ? "Description" : "Patient Name"}
         </Typography>
       </Box>
       <Box p={2}>
         <Box mb={2} lineHeight={1}>
           <Typography variant="body1" color="text" fontWeight="light">
-            {description}
+            {medicalRecordId ? data.description : data.name}
           </Typography>
         </Box>
         <Box opacity={0.3}>
           <Divider />
         </Box>
-        <Box>
-          <Grid container alignItems="center" py={1} pr={2}>
-            <Typography
-              variant="button"
-              fontWeight="bold"
-              textTransform="capitalize"
-            >
-              {"Severity"}: &nbsp;
-            </Typography>
-            <Chip
-              label="Moderate"
-              color="warning"
-              size="small"
-              sx={{ color: "white" }}
-            />
-          </Grid>
-        </Box>
+        {medicalRecordId ? (
+          <Box>
+            <Grid container alignItems="center" py={1} pr={2}>
+              <Typography
+                variant="button"
+                fontWeight="bold"
+                textTransform="capitalize"
+              >
+                {"Severity"}: &nbsp;
+              </Typography>
+              <Chip
+                label={data.severity}
+                color="warning"
+                size="small"
+                sx={{ color: "white" }}
+              />
+            </Grid>
+          </Box>
+        ) : (
+          <></>
+        )}
         <Box>{renderItems}</Box>
       </Box>
     </Card>
