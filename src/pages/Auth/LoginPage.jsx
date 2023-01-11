@@ -53,7 +53,7 @@ const Login = () => {
                 type="email"
                 {...register("email")}
                 autoComplete="off"
-                defaultValue="hl2@gmail.com"
+                // defaultValue="hl2@gmail.com"
               />
             </Box>
             <p className={styles.error}>
@@ -69,7 +69,7 @@ const Login = () => {
                 variant="standard"
                 type="password"
                 {...register("password")}
-                defaultValue="1234"
+                // defaultValue="1234"
               />
             </Box>
             <p className={styles.error}>
@@ -86,7 +86,7 @@ const Login = () => {
               "Login"
             )}
           </Button>
-          <Link to={routes.login}>{"Sign Up"}</Link>
+          <Link to={routes.signUp}>{"Sign Up"}</Link>
         </div>
       </form>
     </FormProvider>

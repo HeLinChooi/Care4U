@@ -11,6 +11,7 @@ import styles from "./Login.module.scss";
 import { useUserContext } from "../../UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import routes from "../../router";
+import Tiles from "./Tiles";
 
 const schema = object({
   email: string().email(),
@@ -35,6 +36,7 @@ const SignUpPage = () => {
 
   return (
     <FormProvider {...methods}>
+      <Tiles />
       <form className={styles.login} onSubmit={handleSubmit(onSubmitHandler)}>
         <div className={styles.panel}>
           <div>
@@ -50,7 +52,7 @@ const SignUpPage = () => {
                 type="email"
                 {...register("email")}
                 autoComplete="off"
-                defaultValue="hl2@gmail.com"
+                // defaultValue="hl2@gmail.com"
               />
             </Box>
             <p className={styles.error}>
@@ -66,7 +68,7 @@ const SignUpPage = () => {
                 variant="standard"
                 type="text"
                 {...register("name")}
-                defaultValue="HL"
+                // defaultValue="HL"
               />
             </Box>
             <p className={styles.error}>
@@ -82,7 +84,7 @@ const SignUpPage = () => {
                 variant="standard"
                 type="password"
                 {...register("password")}
-                defaultValue="1234"
+                // defaultValue="1234"
               />
             </Box>
             <p className={styles.error}>
