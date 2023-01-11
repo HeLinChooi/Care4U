@@ -24,19 +24,3 @@
   overflow: hidden;
   margin: 0px;
 }
-
-.tile {
-  cursor: pointer;
-  position: relative;
-}
-
-.tile:hover:before {
-  background-color: rgb(56, 56, 56);
-}
-
-.tile:before {
-  background-color: rgb(15, 15, 15);
-  content: "";
-  inset: 0.5px;
-  position: absolute;
-}
