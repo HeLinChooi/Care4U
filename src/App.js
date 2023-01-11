@@ -19,6 +19,10 @@ function App() {
           path={"/patient/:profileId/create"}
           element={<MedicalRecordForm />}
         />
+        <Route
+          path={"/patient/:profileId/:medicalRecordId"}
+          element={<Patient />}
+        />
       </Routes>
     </>
   );

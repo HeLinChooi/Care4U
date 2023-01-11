@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PatientListItem from "./PatientListItem";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
@@ -12,6 +12,22 @@ import { Button } from "@mui/material";
 
 const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
   const navigate = useNavigate();
+  const [pathName, setPathName] = useState("");
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const currentPathArray = currentPath.split("/");
+  const profileId = currentPathArray[2];
+
+  useEffect(() => {
+    const navigateTo = (pathname) => {
+      navigate(`/patient/${pathname}`);
+      window.location.reload();
+    };
+
+    if (pathName) {
+      navigateTo(pathName);
+    }
+  }, [pathName]);
+
   return (
     <>
       <Grid
@@ -28,7 +44,11 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
         </Box>
         {!noViewMore && (
           <>
-            <Button variant="contained" onClick={() => navigate("/create")}>
+            {/* <Button variant="contained" onClick={() => navigate("/create")}> */}
+            <Button
+              variant="contained"
+              onClick={() => navigate(`/patient/${profileId}/create`)}
+            >
               Create
             </Button>
           </>
@@ -44,15 +64,17 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
         }}
       >
         {list.map((item, idx) => {
-          const { id, name, phoneNo } = item;
-          const onClick = () => navigate(`/patient/${id}`);
           return (
             <React.Fragment key={idx}>
               <PatientListItem
-                id={id}
-                name={name}
-                phoneNo={phoneNo}
-                onClick={onClick}
+                id={item.id}
+                name={currentPath === "/" ? item.name : item.diagnosis}
+                phoneNo={currentPath === "/" ? item.phoneNo : item.symptom}
+                onClick={() => {
+                  currentPath === "/"
+                    ? setPathName(item.id)
+                    : setPathName(`${profileId}/${item.id}`);
+                }}
               />
               {idx !== list.length - 1 && <Divider />}
             </React.Fragment>
