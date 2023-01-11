@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import PersonIcon from "@mui/icons-material/Person";
@@ -39,6 +39,7 @@ const Login = () => {
 
       <form className={styles.login} onSubmit={handleSubmit(onSubmitHandler)}>
         <div className={styles.panel}>
+          <span className={styles.fancy}>Care4U</span>
           <div>
             <Box
               sx={{ display: "flex", alignItems: "flex-end" }}

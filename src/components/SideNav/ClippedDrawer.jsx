@@ -10,6 +10,15 @@ import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useUserContext } from "../../UserContext";
 import routes from "../../router";
+import {
+  Avatar,
+  ListItemAvatar,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from "@mui/material";
+import ProfileIcon from "@mui/icons-material/AccountBox";
 
 function HeaderIcon({ icon, handleClickHeaderNav }) {
   return (
@@ -31,7 +40,7 @@ function HeaderIcon({ icon, handleClickHeaderNav }) {
 export default function ClippedDrawer({ children }) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { logout } = useUserContext();
+  const { logout, user } = useUserContext();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -52,8 +61,12 @@ export default function ClippedDrawer({ children }) {
             variant="h3"
             noWrap
             component="div"
-            sx={{ display: { xs: "block" }, pl: 2, cursor: "pointer" }}
-            onClick={() => navigate("/")}
+            sx={{
+              display: { xs: "block" },
+              pl: { xs: 0, md: 2 },
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/home")}
           >
             Care4U
           </Typography>
@@ -77,10 +90,27 @@ export default function ClippedDrawer({ children }) {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={() => navigate(routes.myProfile)}>
+            {/* <MenuItem onClick={() => navigate(routes.myProfile)}>
               My Profile
             </MenuItem>
-            <MenuItem onClick={() => logout()}>Log out</MenuItem>
+            <MenuItem onClick={() => logout()}>Log out</MenuItem> */}
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+              disablePadding
+            >
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>
+                    <ProfileIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={user.name} secondary={user.email} />
+              </ListItem>
+              <Divider />
+              <ListItem onClick={() => logout()} sx={{ cursor: "pointer" }}>
+                Log Out
+              </ListItem>
+            </List>
           </Menu>
         </Toolbar>
       </AppBar>

@@ -26,17 +26,20 @@ const Tiles = () => {
     toggleOpacity();
   };
   const createGrid = () => {
-    const size = document.body.clientWidth > 800 ? 50 : 50;
-
-    setColumns(Math.floor(document.body.clientWidth / size));
-    setRows(Math.floor(document.body.clientHeight / size));
-    setQuantity(columns * rows);
+    const size = window.innerWidth > 800 ? 50 : 50;
+    const colNum = Math.floor(window.innerWidth / size);
+    const rowNum = Math.floor(window.innerHeight / size);
+    setColumns(colNum);
+    setRows(rowNum);
+    setQuantity(colNum * rowNum);
   };
 
   useEffect(() => {
     createGrid();
     window.onresize = () => createGrid();
   }, []);
+
+  console.log("quantity", quantity);
 
   return (
     <>
