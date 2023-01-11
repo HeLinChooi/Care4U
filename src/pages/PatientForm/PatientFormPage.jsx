@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Form from "./Form";
 
 const PatientForm = () => {
-  let currentAccount, sendTransaction;
+  // let currentAccount, sendTransaction;
   const navigate = useNavigate();
   const url = window.location.pathname.split("/")[1];
 

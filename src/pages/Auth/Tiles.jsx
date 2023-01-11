@@ -16,7 +16,7 @@ const Tiles = () => {
 
   const handleOnClick = (index) => {
     anime({
-      targets: ".Swagger_tile__45Zk7",
+      targets: ".Swagger_tile__iJR2F",
       opacity: toggle ? 0 : 1,
       delay: anime.stagger(50, {
         grid: [columns, rows],
