@@ -6,12 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
+import { UserProvider } from "./UserContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Router>
-        <App />
+        <UserProvider>
+          <App />
+        </UserProvider>
       </Router>
     </ThemeProvider>
   </React.StrictMode>,
