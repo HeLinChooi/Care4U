@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import styles from "./Login.module.scss";
 import { useUserContext } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import routes from "../../router";
 
 const schema = object({
@@ -92,26 +92,14 @@ const SignUpPage = () => {
             </p>
           </div>
 
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            sx={{ alignSelf: "end" }}
-          >
+          <Button type="submit" color="primary" variant="contained">
             {isLoading ? (
               <CircularProgress color="alternate" size="2rem" />
             ) : (
               "Sign Up"
             )}
           </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            sx={{ alignSelf: "end" }}
-            onClick={() => navigate(routes.login)}
-          >
-            {"Login"}
-          </Button>
+          <Link to={routes.login}>{"Login"}</Link>
         </div>
       </form>
     </FormProvider>

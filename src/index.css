@@ -1,3 +1,8 @@
+:root {
+  --g1: #6acaeb;
+  --g2: #3737c3;
+}
+
 html,
 body,
 #root {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import PersonIcon from "@mui/icons-material/Person";
@@ -9,8 +9,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import styles from "./Login.module.scss";
 import { useUserContext } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import routes from "../../router";
+import Tiles from "./Tiles";
 
 const schema = object({
   email: string().email(),
@@ -34,6 +35,8 @@ const Login = () => {
 
   return (
     <FormProvider {...methods}>
+      <Tiles></Tiles>
+
       <form className={styles.login} onSubmit={handleSubmit(onSubmitHandler)}>
         <div className={styles.panel}>
           <div>
@@ -75,26 +78,14 @@ const Login = () => {
             </p>
           </div>
 
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            sx={{ alignSelf: "end" }}
-          >
+          <Button type="submit" color="primary" variant="contained">
             {isLoading ? (
               <CircularProgress color="alternate" size="2rem" />
             ) : (
               "Login"
             )}
           </Button>
-          <Button
-            color="primary"
-            variant="contained"
-            sx={{ alignSelf: "end" }}
-            onClick={() => navigate(routes.signUp)}
-          >
-            {"Sign Up"}
-          </Button>
+          <Link to={routes.login}>{"Sign Up"}</Link>
         </div>
       </form>
     </FormProvider>
