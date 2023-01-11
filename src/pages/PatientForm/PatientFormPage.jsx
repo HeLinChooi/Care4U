@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
 import Form from "./Form";
+import routes from "../../router";
 
 const PatientForm = () => {
   // let currentAccount, sendTransaction;
@@ -15,10 +16,10 @@ const PatientForm = () => {
       return;
     } else {
       const requestOptions = {
-        method: url === "create" ? "POST" : "PUT",
+        method: url === "create-patient" ? "POST" : "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...(url !== "create"
+          ...(url !== "create-patient"
             ? { id: window.location.pathname.split("/")[2] }
             : {}),
           name: formData.name,
@@ -28,13 +29,12 @@ const PatientForm = () => {
           email: formData.email,
         }),
       };
-      console.log(formData);
       const response = await fetch(
         "http://localhost:8080/patient",
         requestOptions
       ).then((response) => response.json());
       console.log("response", response);
-      navigate("/");
+      navigate(routes.home);
     }
   };
 
@@ -43,7 +43,9 @@ const PatientForm = () => {
   // }
 
   return (
-    <PageLayout title={`${url[0].toUpperCase()}${url.substring(1)} Patient`}>
+    <PageLayout
+      title={`${url[0].toUpperCase()}${url.substring(1)}`.replace("-", " ")}
+    >
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Form onSubmit={handleOnSubmit} />

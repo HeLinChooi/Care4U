@@ -11,27 +11,34 @@ import nftAccessLog from "@Mock/nftAccessLog";
 const Patient = () => {
   const title = "Regular Health Check Patient Profile";
   const [patientProfile, setPatientProfile] = useState({});
-  const [medicalRecordData, setMedicalRecordData] = useState({
-    id: "",
-    description: "",
-    severity: "",
-    symptom: "",
-    diagnosis: "",
-    treatment: "",
-    patients: {},
-  });
+  const [medicalRecordData, setMedicalRecordData] = useState([
+    {
+      id: "",
+      description: "",
+      severity: "",
+      symptom: "",
+      diagnosis: "",
+      treatment: "",
+      patients: {},
+    },
+  ]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const currentPathArray = currentPath.split("/");
   const profileId = currentPathArray[2];
   const [medicalRecordId, setMedicalRecordId] = useState(null);
+  let unmounted = false;
 
   useEffect(() => {
     getPatientById();
     getMedicalRecordsByPatientId();
+    return () => {
+      unmounted = true;
+    };
   }, []);
 
   const getPatientById = async () => {
+    if (unmounted) return;
     const response = await fetch(
       `http://localhost:8080/patient-by-id/${profileId}`
     ).then((response) => response.json());
@@ -46,6 +53,7 @@ const Patient = () => {
   };
 
   const getMedicalRecordsByPatientId = async () => {
+    if (unmounted) return;
     const response = await fetch(
       `http://localhost:8080/medical-record-by-patient-id/${profileId}`
     ).then((response) => response.json());

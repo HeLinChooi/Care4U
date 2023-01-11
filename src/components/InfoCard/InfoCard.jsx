@@ -25,10 +25,10 @@ const InfoCard = ({ props }) => {
         // "Reason for referral for specialist treatment": "-",
       }
     : {
-        age: 80,
-        gender: true,
-        phoneNo: "012-3456799",
-        email: "GreatDickson@gmail.com",
+        age: data.age,
+        gender: data.gender,
+        phoneNo: data.phoneNo,
+        email: data.email,
       };
 
   useEffect(() => {
@@ -127,7 +127,13 @@ const InfoCard = ({ props }) => {
                 {"Severity"}: &nbsp;
               </Typography>
               <Chip
-                label={data.severity}
+                label={
+                  data.severity === 30
+                    ? "Low"
+                    : data.severity === 20
+                    ? "Moderate"
+                    : "High"
+                }
                 color="warning"
                 size="small"
                 sx={{ color: "white" }}

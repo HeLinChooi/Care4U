@@ -14,15 +14,15 @@ function App() {
     <>
       <CssBaseline />
       <Routes>
-        {/* <Route path={routes.login} element={<LoginPage />} /> */}
-        <Route path={routes.login} element={<Home />} />
+        <Route path={routes.login} element={<LoginPage />} />
         <Route path={routes.signUp} element={<SignUpPage />} />
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.patient} element={<Patient />} />
-        <Route path={routes.medicalRecord} element={<Patient />} />
         <Route path={routes.createPatient} element={<PatientForm />} />
         <Route path={routes.editPatient} element={<PatientForm />} />
+        <Route path={routes.medicalRecord} element={<Patient />} />
         <Route path={routes.createRecord} element={<MedicalRecordForm />} />
+        <Route path={routes.editRecord} element={<MedicalRecordForm />} />
       </Routes>
     </>
   );

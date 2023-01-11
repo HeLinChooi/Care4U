@@ -4,40 +4,43 @@ import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
 import Form from "./Form";
+import routes from "../../router";
 
 const PatientForm = () => {
   // let currentAccount, sendTransaction;
   const navigate = useNavigate();
-  const url = window.location.pathname.split("/")[3];
-  const profileId = window.location.pathname.split("/")[2];
-  console.log(url[0].toUpperCase());
+  const currentPathArray = window.location.pathname.split("/");
+  const urlOrRecordId = currentPathArray[3];
+  const profileId = currentPathArray[2];
 
   const handleOnSubmit = async (formData) => {
     if (!formData) {
       return;
     } else {
       const requestOptions = {
-        method: url === "create" ? "POST" : "PUT",
+        method: urlOrRecordId === "create-medical-record" ? "POST" : "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...(url !== "create"
-            ? { id: window.location.pathname.split("/")[2] }
-            : {}),
-          patient_id: profileId,
-          description: "THIS IS bad",
-          severity: "severity string",
-          symptom: "severe symptom here",
-          diagnosis: "diagnosis string",
-          treatment: "treatment string",
+          ...(urlOrRecordId === "create-medical-record"
+            ? { patient_id: profileId }
+            : { id: urlOrRecordId }),
+          description: formData.description,
+          severity: formData.severity,
+          symptom: formData.symptom,
+          diagnosis: formData.diagnosis,
+          treatment: formData.treatment,
         }),
       };
-      console.log(formData);
       const response = await fetch(
         "http://localhost:8080/medical-record",
         requestOptions
       ).then((response) => response.json());
       console.log("response", response);
-      navigate("/");
+      navigate(
+        routes.medicalRecord
+          .replace(":profileId", profileId)
+          .replace(":medicalRecordId", response.id)
+      );
     }
   };
 
@@ -47,7 +50,13 @@ const PatientForm = () => {
 
   return (
     <PageLayout
-      title={`${url[0].toUpperCase()}${url.substring(1)} Medical Record`}
+      title={
+        urlOrRecordId === "create-medical-record"
+          ? `${urlOrRecordId[0].toUpperCase()}${urlOrRecordId.substring(
+              1
+            )}`.replaceAll("-", " ")
+          : `Edit Medical Record`
+      }
     >
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
