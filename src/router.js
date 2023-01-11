@@ -5,8 +5,9 @@ const routes = {
   myProfile: "/my-profile",
   patient: "/patient/:profileId",
   createPatient: "/create-patient",
-  createRecord: "/patient/:profileId/create-record",
   editPatient: "/edit/:profileId",
   medicalRecord: "/patient/:profileId/:medicalRecordId",
+  createRecord: "/patient/:profileId/create-medical-record",
+  editRecord: "/patient/:profileId/:medicalRecordId/edit",
 };
 export default routes;

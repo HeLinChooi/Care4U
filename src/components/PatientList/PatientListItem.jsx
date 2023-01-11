@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
@@ -8,24 +8,44 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import routes from "../../router";
 
-const PatientListItem = ({ id, name, phoneNo, onClick = () => {} }) => {
+const PatientListItem = ({ id, title, desc, onClick = () => {} }) => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const [currentPathArray, setcurrentPathArray] = useState(
+    window.location.pathname.split("/")
+  );
 
   const handleOnDelete = async (event) => {
     event.stopPropagation();
-    const response = await fetch(
-      `http://localhost:8080/delete-patient-by-id/${id}`,
-      { method: "DELETE" }
-    ).then((response) => response.text());
-    console.log("response", response);
+    if (currentPathArray[1] === "patient") {
+      const response = await fetch(
+        `http://localhost:8080/medical-record/${id}`,
+        { method: "DELETE" }
+      ).then((response) => response.text());
+      console.log("response", response);
+    } else {
+      const response = await fetch(
+        `http://localhost:8080/delete-patient-by-id/${id}`,
+        { method: "DELETE" }
+      ).then((response) => response.text());
+      console.log("response", response);
+    }
     window.location.reload();
   };
 
   const handleOnEdit = async (event) => {
     event.stopPropagation();
-    navigate(`/edit/${id}`);
+    if (currentPathArray[1] === "patient") {
+      navigate(
+        routes.editRecord
+          .replace(":profileId", currentPathArray[2])
+          .replace(":medicalRecordId", id)
+      );
+    } else {
+      navigate(routes.editPatient.replace(":profileId", id));
+    }
   };
 
   return (
@@ -41,13 +61,13 @@ const PatientListItem = ({ id, name, phoneNo, onClick = () => {} }) => {
         onClick={onClick}
       >
         <ListItemAvatar>
-          <Avatar alt={name} src="/static/images/avatar/1.jpg" />
+          <Avatar alt={title} src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
           primary={
             <Grid container justifyContent="space-between" alignItems="center">
               <Grid item>
-                <Typography variant="body1">{name}</Typography>
+                <Typography variant="body1">{title}</Typography>
               </Grid>
               <Grid item>
                 {/* <Typography component="span" variant="body2">
@@ -64,7 +84,7 @@ const PatientListItem = ({ id, name, phoneNo, onClick = () => {} }) => {
                 variant="body2"
                 color="text.primary"
               >
-                {phoneNo}
+                {desc}
               </Typography>
               {/* <Typography component="span" variant="body2">
                 &nbsp;-&nbsp;

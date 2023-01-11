@@ -18,17 +18,6 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
   const currentPathArray = currentPath.split("/");
   const profileId = currentPathArray[2];
 
-  useEffect(() => {
-    const navigateTo = (pathname) => {
-      navigate(`/patient/${pathname}`);
-      window.location.reload();
-    };
-
-    if (pathName) {
-      navigateTo(pathName);
-    }
-  }, [pathName]);
-
   return (
     <>
       <Grid
@@ -47,7 +36,13 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
           <>
             <Button
               variant="contained"
-              onClick={() => navigate(routes.createPatient)}
+              onClick={() =>
+                navigate(
+                  currentPath === "/home"
+                    ? routes.createPatient
+                    : routes.createRecord.replace(":profileId", profileId)
+                )
+              }
             >
               Create
             </Button>
@@ -63,26 +58,40 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
           padding: 0,
         }}
       >
-        {list.map((item, idx) => {
-          const { id, name, phoneNo } = item;
-          const onClick = () =>
-            navigate(routes.patient.replace(":profileId", id));
-          return (
-            <React.Fragment key={idx}>
-              <PatientListItem
-                id={item.id}
-                name={currentPath === "/" ? item.name : item.diagnosis}
-                phoneNo={currentPath === "/" ? item.phoneNo : item.symptom}
-                onClick={() => {
-                  currentPath === "/"
-                    ? setPathName(item.id)
-                    : setPathName(`${profileId}/${item.id}`);
-                }}
-              />
-              {idx !== list.length - 1 && <Divider />}
-            </React.Fragment>
-          );
-        })}
+        {list &&
+          list.map((item, idx) => {
+            const { id, name, phoneNo } = item;
+            const onClick = () => {
+              if (currentPath === "/home") {
+                navigate(routes.patient.replace(":profileId", id));
+              } else {
+                // navigate(
+                //   routes.medicalRecord
+                //     .replace(":profileId", profileId)
+                //     .replace(":medicalRecordId", id)
+                // );
+                window.location.href = routes.medicalRecord
+                  .replace(":profileId", profileId)
+                  .replace(":medicalRecordId", id);
+              }
+            };
+            return (
+              <React.Fragment key={idx}>
+                <PatientListItem
+                  id={item.id}
+                  title={currentPath === "/home" ? item.name : item.diagnosis}
+                  desc={currentPath === "/home" ? item.phoneNo : item.symptom}
+                  onClick={onClick}
+                  // onClick={() => {
+                  //   currentPath === "/home"
+                  //     ? setPathName(item.id)
+                  //     : setPathName(`${profileId}/${item.id}`);
+                  // }}
+                />
+                {idx !== list.length - 1 && <Divider />}
+              </React.Fragment>
+            );
+          })}
       </List>
     </>
   );

@@ -5,11 +5,16 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function BasicSelect() {
-  const [age, setAge] = React.useState("");
+export default function BasicSelect({ onSeverityChange, oldData }) {
+  const [severity, setSeverity] = React.useState("");
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  React.useEffect(() => {
+    setSeverity(oldData);
+  }, [oldData]);
+
+  const handleChange = async (event) => {
+    await onSeverityChange(event.target.value);
+    setSeverity(event.target.value);
   };
 
   return (
@@ -19,8 +24,8 @@ export default function BasicSelect() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
+          value={severity}
+          label="Severity"
           onChange={handleChange}
         >
           <MenuItem value={10}>Low</MenuItem>

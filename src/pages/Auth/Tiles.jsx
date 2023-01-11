@@ -39,7 +39,7 @@ const Tiles = () => {
     window.onresize = () => createGrid();
   }, []);
 
-  console.log("quantity", quantity);
+  // console.log("quantity", quantity);
 
   return (
     <>
