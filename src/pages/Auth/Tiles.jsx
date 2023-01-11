@@ -16,7 +16,7 @@ const Tiles = () => {
 
   const handleOnClick = (index) => {
     anime({
-      targets: ".Swagger_tile__iJR2F",
+      targets: ".tile",
       opacity: toggle ? 0 : 1,
       delay: anime.stagger(50, {
         grid: [columns, rows],
@@ -53,7 +53,7 @@ const Tiles = () => {
         {Array.from(Array(quantity)).map((tile, index) => {
           return (
             <Box
-              className={styles.tile}
+              className={"tile"}
               onClick={() => handleOnClick(index)}
               key={index}
             ></Box>

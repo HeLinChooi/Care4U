@@ -26,6 +26,8 @@ const UserProvider = ({ children }) => {
     if (token && email) {
       // const payload = { name: name, email: email }
       navigate("/home");
+    } else {
+      navigate("/");
     }
   }, []);
 
