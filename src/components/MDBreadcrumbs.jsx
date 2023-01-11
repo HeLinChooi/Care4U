@@ -8,8 +8,8 @@ export default function BasicBreadcrumbs(props) {
   return (
     <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
-        {list.map((item) => (
-          <Link underline="hover" color="inherit" href={item.link}>
+        {list.map((item, idx) => (
+          <Link underline="hover" color="inherit" href={item.link} key={idx}>
             {item.label}
           </Link>
         ))}

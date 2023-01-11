@@ -9,6 +9,7 @@ import Icon from "@mui/material/Icon";
 import { useNavigate } from "react-router-dom";
 import md from "@Mock/boxShadow";
 import { Button } from "@mui/material";
+import routes from "../../router";
 
 const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
   const navigate = useNavigate();
@@ -44,10 +45,9 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
         </Box>
         {!noViewMore && (
           <>
-            {/* <Button variant="contained" onClick={() => navigate("/create")}> */}
             <Button
               variant="contained"
-              onClick={() => navigate(`/patient/${profileId}/create`)}
+              onClick={() => navigate(routes.createPatient)}
             >
               Create
             </Button>
@@ -64,6 +64,9 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
         }}
       >
         {list.map((item, idx) => {
+          const { id, name, phoneNo } = item;
+          const onClick = () =>
+            navigate(routes.patient.replace(":profileId", id));
           return (
             <React.Fragment key={idx}>
               <PatientListItem
