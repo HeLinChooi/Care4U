@@ -22,7 +22,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
       const id = window.location.pathname.split("/")[3];
       const getMedicalRecordById = async () => {
         const response = await fetch(
-          `http://localhost:8080/medical-record-by-id/${id}`
+          `https://care4u-spring-boot-production.up.railway.app/medical-record-by-id/${id}`
         ).then((response) => response.json());
         console.log("response", response);
         if (!isMounted) {

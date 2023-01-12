@@ -46,7 +46,8 @@ const UserProvider = ({ children }) => {
       body: JSON.stringify({ email, name, password }),
     };
     const response = await fetch(
-      "http://localhost:8080/api/auth/signup",
+      // eslint-disable-next-line no-undef
+      `https://care4u-spring-boot-production.up.railway.app/api/auth/signup`,
       requestOptions
     ).then((response) => response.json());
     console.log("response", response);
@@ -86,7 +87,8 @@ const UserProvider = ({ children }) => {
       body: JSON.stringify({ email, password }),
     };
     const response = await fetch(
-      "http://localhost:8080/api/auth/signin",
+      // eslint-disable-next-line no-undef
+      `https://care4u-spring-boot-production.up.railway.app/api/auth/signin`,
       requestOptions
     ).then((response) => response.json());
     console.log("response", response);

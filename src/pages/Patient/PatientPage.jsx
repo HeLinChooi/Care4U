@@ -38,7 +38,7 @@ const Patient = () => {
   const getPatientById = async () => {
     if (unmounted) return;
     const response = await fetch(
-      `http://localhost:8080/patient-by-id/${profileId}`
+      `https://care4u-spring-boot-production.up.railway.app/patient-by-id/${profileId}`
     ).then((response) => response.json());
     console.log("response", response);
     setPatientProfile({
@@ -53,7 +53,7 @@ const Patient = () => {
   const getMedicalRecordsByPatientId = async () => {
     if (unmounted) return;
     const response = await fetch(
-      `http://localhost:8080/medical-record-by-patient-id/${profileId}`
+      `https://care4u-spring-boot-production.up.railway.app/medical-record-by-patient-id/${profileId}`
     ).then((response) => response.json());
     console.log("response", response);
     // update the state
