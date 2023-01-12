@@ -18,14 +18,20 @@ const UserProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(false);
+  const [route] = React.useState(window.location.pathname);
 
   // check if user signed in before on first render
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     const email = sessionStorage.getItem("email");
-    if (token && email) {
-      // const payload = { name: name, email: email }
-      navigate("/home");
+    const name = sessionStorage.getItem("name");
+    if (token && email && name) {
+      navigate(route);
+      setUser({
+        token,
+        email,
+        name,
+      });
     } else {
       navigate("/");
     }
@@ -97,6 +103,7 @@ const UserProvider = ({ children }) => {
           setUser(user);
           sessionStorage.setItem("token", user.token);
           sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("name", user.name);
           return true;
         } else {
           alert("Failed to login, please try again.");

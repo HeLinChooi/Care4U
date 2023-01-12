@@ -53,7 +53,7 @@ const Login = () => {
                 type="email"
                 {...register("email")}
                 autoComplete="off"
-                defaultValue="hl2@gmail.com"
+                // defaultValue="hl2@gmail.com"
               />
             </Box>
             <p className={styles.error}>
