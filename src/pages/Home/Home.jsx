@@ -11,9 +11,9 @@ const Home = () => {
   }, []);
 
   const getPatients = async () => {
-    const response = await fetch("http://localhost:8080/patients").then(
-      (response) => response.json()
-    );
+    const response = await fetch("http://localhost:8080/patients")
+      .then((response) => response.json())
+      .catch((err) => console.log(err));
     console.log("response", response);
     // update the state
     setPatients(response);

@@ -26,7 +26,7 @@ const Tiles = () => {
     toggleOpacity();
   };
   const createGrid = () => {
-    const size = window.innerWidth > 800 ? 50 : 50;
+    const size = 40;
     const colNum = Math.floor(window.innerWidth / size);
     const rowNum = Math.floor(window.innerHeight / size);
     setColumns(colNum);
