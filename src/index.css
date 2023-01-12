@@ -26,6 +26,7 @@ code {
 .tile {
   cursor: pointer;
   position: relative;
+  opacity: 0;
 }
 
 .tile:hover:before {

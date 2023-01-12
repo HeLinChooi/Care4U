@@ -19,14 +19,14 @@ const PatientListItem = ({ id, title, desc, onClick = () => {} }) => {
     event.stopPropagation();
     if (currentPathArray[1] === "patient") {
       const response = await fetch(
-        `http://localhost:8080/medical-record/${id}`,
+        `https://care4u-spring-boot-production.up.railway.app/medical-record/${id}`,
         { method: "DELETE" }
       ).then((response) => response.text());
       console.log("response", response);
       navigate(routes.patient.replace(":profileId", currentPathArray[2]));
     } else {
       const response = await fetch(
-        `http://localhost:8080/delete-patient-by-id/${id}`,
+        `https://care4u-spring-boot-production.up.railway.app/delete-patient-by-id/${id}`,
         { method: "DELETE" }
       ).then((response) => response.text());
       console.log("response", response);

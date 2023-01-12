@@ -22,7 +22,8 @@ const Form = ({ onSubmit = (formData) => {} }) => {
       const id = window.location.pathname.split("/")[2];
       const getPatientById = async () => {
         const response = await fetch(
-          `http://localhost:8080/patient-by-id/${id}`
+          // eslint-disable-next-line no-undef
+          `https://care4u-spring-boot-production.up.railway.app/patient-by-id/${id}`
         ).then((response) => response.json());
         console.log("response", response);
         if (!isMounted) {
