@@ -30,8 +30,13 @@ const SignUpPage = () => {
   const { handleSubmit, register, formState } = methods;
 
   const onSubmitHandler = async (values) => {
-    const success = await userSignUp(values.email, values.password);
-    if (success) navigate("/home");
+    const success = await userSignUp(
+      values.email,
+      values.name,
+      values.password
+    );
+    // Go to login page
+    if (success) navigate(routes.login);
   };
 
   return (
