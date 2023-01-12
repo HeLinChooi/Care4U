@@ -13,9 +13,7 @@ import routes from "../../router";
 const PatientListItem = ({ id, title, desc, onClick = () => {} }) => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const [currentPathArray, setcurrentPathArray] = useState(
-    window.location.pathname.split("/")
-  );
+  const [currentPathArray] = useState(window.location.pathname.split("/"));
 
   const handleOnDelete = async (event) => {
     event.stopPropagation();
@@ -25,6 +23,7 @@ const PatientListItem = ({ id, title, desc, onClick = () => {} }) => {
         { method: "DELETE" }
       ).then((response) => response.text());
       console.log("response", response);
+      navigate(routes.patient.replace(":profileId", currentPathArray[2]));
     } else {
       const response = await fetch(
         `http://localhost:8080/delete-patient-by-id/${id}`,
