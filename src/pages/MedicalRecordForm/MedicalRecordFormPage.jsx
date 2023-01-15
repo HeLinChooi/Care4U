@@ -32,7 +32,7 @@ const PatientForm = () => {
         }),
       };
       const response = await fetch(
-        "http://localhost:8080/medical-record",
+        "https://care4u-spring-boot-production.up.railway.app/medical-record",
         requestOptions
       ).then((response) => response.json());
       console.log("response", response);

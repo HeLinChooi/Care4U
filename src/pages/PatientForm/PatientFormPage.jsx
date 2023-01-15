@@ -30,7 +30,8 @@ const PatientForm = () => {
         }),
       };
       const response = await fetch(
-        "http://localhost:8080/patient",
+        // eslint-disable-next-line no-undef
+        `https://care4u-spring-boot-production.up.railway.app/patient`,
         requestOptions
       ).then((response) => response.json());
       console.log("response", response);

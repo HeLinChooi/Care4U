@@ -11,7 +11,9 @@ const Home = () => {
   }, []);
 
   const getPatients = async () => {
-    const response = await fetch("http://localhost:8080/patients")
+    const response = await fetch(
+      "https://care4u-spring-boot-production.up.railway.app/patients"
+    )
       .then((response) => response.json())
       .catch((err) => console.log(err));
     console.log("response", response);
