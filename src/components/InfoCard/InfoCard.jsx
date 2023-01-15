@@ -6,9 +6,10 @@ import Card from "@mui/material/Card";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import md from "@Mock/boxShadow";
+import PageLayout from "@Components/PageLayout";
 
 const InfoCard = ({ props }) => {
-  const [data, setData] = useState(props);
+  const [data, setData] = useState({});
   const [medicalRecord, setMedicalRecord] = useState(null);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const currentPathArray = currentPath.split("/");
@@ -16,20 +17,32 @@ const InfoCard = ({ props }) => {
   const [medicalRecordId, setMedicalRecordId] = useState(null);
   const labels = [];
   const values = [];
-  const info = medicalRecordId
-    ? {
-        "First Symptoms": data.symptom,
-        Diagnosis: data.diagnosis,
-        // "Has the patient previously suffered from the same complaints": "Yes",
-        "Brief description of treatment already given": data.treatment,
-        // "Reason for referral for specialist treatment": "-",
-      }
-    : {
-        age: data.age,
-        gender: data.gender,
-        phoneNo: data.phoneNo,
-        email: data.email,
-      };
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    if (Object.keys(data).length === 0) {
+      setData(props);
+    }
+  }, [props]);
+
+  useEffect(() => {
+    setInfo(
+      medicalRecordId
+        ? {
+            "First Symptoms": data.symptom,
+            Diagnosis: data.diagnosis,
+            // "Has the patient previously suffered from the same complaints": "Yes",
+            "Brief description of treatment already given": data.treatment,
+            // "Reason for referral for specialist treatment": "-",
+          }
+        : {
+            age: data.age,
+            gender: data.gender,
+            phoneNo: data.phoneNo,
+            email: data.email,
+          }
+    );
+  }, [data]);
 
   useEffect(() => {
     if (currentPathArray.length === 4) {
@@ -88,64 +101,83 @@ const InfoCard = ({ props }) => {
   ));
 
   return (
-    <Card
-      sx={{
-        height: "100%",
-        bgcolor: "background.paper",
-        borderRadius: "0.75rem",
-        boxShadow: md,
-      }}
-    >
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        pt={2}
-        px={2}
-      >
-        <Typography variant="h6" fontWeight="bold" textTransform="capitalize">
-          {medicalRecordId ? "Description" : "Patient Name"}
-        </Typography>
-      </Box>
-      <Box p={2}>
-        <Box mb={2} lineHeight={1}>
-          <Typography variant="body1" color="text" fontWeight="light">
-            {medicalRecordId ? data.description : data.name}
-          </Typography>
-        </Box>
-        <Box opacity={0.3}>
-          <Divider />
-        </Box>
-        {medicalRecordId ? (
-          <Box>
-            <Grid container alignItems="center" py={1} pr={2}>
-              <Typography
-                variant="button"
-                fontWeight="bold"
-                textTransform="capitalize"
-              >
-                {"Severity"}: &nbsp;
-              </Typography>
-              <Chip
-                label={
-                  data.severity === 30
-                    ? "Low"
-                    : data.severity === 20
-                    ? "Moderate"
-                    : "High"
-                }
-                color="warning"
-                size="small"
-                sx={{ color: "white" }}
-              />
-            </Grid>
+    <>
+      {Object.keys(info).length !== 0 ? (
+        <Card
+          sx={{
+            height: "100%",
+            bgcolor: "background.paper",
+            borderRadius: "0.75rem",
+            boxShadow: md,
+          }}
+        >
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            pt={2}
+            px={2}
+          >
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              textTransform="capitalize"
+            >
+              {medicalRecordId ? "Description" : "Patient Name"}
+            </Typography>
           </Box>
-        ) : (
-          <></>
-        )}
-        <Box>{renderItems}</Box>
-      </Box>
-    </Card>
+          <Box p={2}>
+            <Box mb={2} lineHeight={1}>
+              <Typography variant="body1" color="text" fontWeight="light">
+                {medicalRecordId ? data.description : data.name}
+              </Typography>
+            </Box>
+            <Box opacity={0.3}>
+              <Divider />
+            </Box>
+            {medicalRecordId ? (
+              <Box>
+                <Grid container alignItems="center" py={1} pr={2}>
+                  <Typography
+                    variant="button"
+                    fontWeight="bold"
+                    textTransform="capitalize"
+                  >
+                    {"Severity"}: &nbsp;
+                  </Typography>
+                  <Chip
+                    label={
+                      data.severity === 30
+                        ? "Low"
+                        : data.severity === 20
+                        ? "Moderate"
+                        : "High"
+                    }
+                    color="warning"
+                    size="small"
+                    sx={{ color: "white" }}
+                  />
+                </Grid>
+              </Box>
+            ) : (
+              <></>
+            )}
+            <Box>{renderItems}</Box>
+          </Box>
+        </Card>
+      ) : (
+        <PageLayout>
+          <Typography
+            variant="h3"
+            fontWeight="bold"
+            textTransform="capitalize"
+            sx={{ pt: 1 }}
+          >
+            Loading...
+          </Typography>
+        </PageLayout>
+      )}
+    </>
   );
 };
 
