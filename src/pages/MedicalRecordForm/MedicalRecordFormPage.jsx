@@ -1,7 +1,6 @@
 import React from "react";
 import PageLayout from "@Components/PageLayout";
 import Grid from "@mui/material/Grid";
-import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
 import Form from "./Form";
 import routes from "../../router";
@@ -31,16 +30,20 @@ const PatientForm = () => {
           treatment: formData.treatment,
         }),
       };
-      const response = await fetch(
-        "https://care4u-spring-boot-production.up.railway.app/medical-record",
-        requestOptions
-      ).then((response) => response.json());
-      console.log("response", response);
-      navigate(
-        routes.medicalRecord
-          .replace(":profileId", profileId)
-          .replace(":medicalRecordId", response.id)
-      );
+      try {
+        const response = await fetch(
+          "https://care4u-spring-boot-production.up.railway.app/medical-record",
+          requestOptions
+        ).then((response) => response.json());
+        console.log("response", response);
+        navigate(
+          routes.medicalRecord
+            .replace(":profileId", profileId)
+            .replace(":medicalRecordId", response.id)
+        );
+      } catch (err) {
+        alert("Something went wrong please try again.");
+      }
     }
   };
 
@@ -58,13 +61,10 @@ const PatientForm = () => {
           : `Edit Medical Record`
       }
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs={12} md={6}>
           <Form onSubmit={handleOnSubmit} />
           {/* <Form onSubmit={createMarket} /> */}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {/* <InfoCard description="The patient has suffered for weeks" /> */}
         </Grid>
       </Grid>
     </PageLayout>

@@ -71,6 +71,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, name: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
         <Grid item xs={12}>
@@ -94,6 +95,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, age: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -107,6 +109,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, phoneNo: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
         <Grid item xs={12}>
@@ -120,6 +123,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, email: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
 

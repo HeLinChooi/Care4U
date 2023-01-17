@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import md from "@Mock/boxShadow";
 import BasicSelect from "./Select";
 
-const Form = ({ onSubmit = (formData) => {} }) => {
+const Form = ({ onSubmit = () => {} }) => {
   const [formData, setFormData] = useState({
     description: "",
     severity: "",
@@ -73,6 +73,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, description: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
         <Grid item xs={12}>
@@ -90,6 +91,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, symptom: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -101,6 +103,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, diagnosis: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
 
@@ -115,6 +118,7 @@ const Form = ({ onSubmit = (formData) => {} }) => {
             onChange={(event) =>
               setFormData({ ...formData, treatment: event.target.value })
             }
+            autoComplete="off"
           />
         </Grid>
         <Grid item xs={12} container justifyContent="flex-end">

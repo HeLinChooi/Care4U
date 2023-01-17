@@ -30,12 +30,22 @@ const PatientForm = () => {
         }),
       };
       const response = await fetch(
-        // eslint-disable-next-line no-undef
         `https://care4u-spring-boot-production.up.railway.app/patient`,
         requestOptions
-      ).then((response) => response.json());
+      ).then((response) => {
+        console.log("response", response);
+        response.json();
+      });
       console.log("response", response);
-      navigate(routes.home);
+      if (response && response.error !== null) {
+        alert(response.error);
+      } else if (response == null) {
+        alert(
+          "Something went wrong. The email may be used, please use another email."
+        );
+      } else {
+        navigate(routes.home);
+      }
     }
   };
 
@@ -47,13 +57,10 @@ const PatientForm = () => {
     <PageLayout
       title={`${url[0].toUpperCase()}${url.substring(1)}`.replace("-", " ")}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs={12} md={6}>
           <Form onSubmit={handleOnSubmit} />
           {/* <Form onSubmit={createMarket} /> */}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {/* <InfoCard description="The patient has suffered for weeks" /> */}
         </Grid>
       </Grid>
     </PageLayout>
