@@ -18,6 +18,7 @@ const InfoCard = ({ props }) => {
   const labels = [];
   const values = [];
   const [info, setInfo] = useState({});
+  const [severity, setSeverity] = useState(null);
 
   useEffect(() => {
     if (Object.keys(data).length === 0) {
@@ -42,6 +43,7 @@ const InfoCard = ({ props }) => {
             email: data.email,
           }
     );
+    setSeverity(data.severity);
   }, [data]);
 
   useEffect(() => {
@@ -100,6 +102,8 @@ const InfoCard = ({ props }) => {
     </Box>
   ));
 
+  console.log(data.severity);
+
   return (
     <>
       {Object.keys(info).length !== 0 ? (
@@ -145,18 +149,28 @@ const InfoCard = ({ props }) => {
                   >
                     {"Severity"}: &nbsp;
                   </Typography>
-                  <Chip
-                    label={
-                      data.severity === 30
-                        ? "High"
-                        : data.severity === 20
-                        ? "Moderate"
-                        : "Low"
-                    }
-                    color="warning"
-                    size="small"
-                    sx={{ color: "white" }}
-                  />
+                  {severity ? (
+                    <Chip
+                      label={
+                        data.severity == 30
+                          ? "High"
+                          : data.severity == 20
+                          ? "Moderate"
+                          : "Low"
+                      }
+                      color="warning"
+                      size="small"
+                      sx={{ color: "white" }}
+                    />
+                  ) : (
+                    <Typography
+                      fontWeight="normal"
+                      textTransform="capitalize"
+                      sx={{ pt: 1 }}
+                    >
+                      Loading...
+                    </Typography>
+                  )}
                 </Grid>
               </Box>
             ) : (
