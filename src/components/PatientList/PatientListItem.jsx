@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import routes from "../../router";
+import DeleteAlertDialog from "../DeleteAlertDialog/DeleteAlertDialog";
 
 const PatientListItem = ({ id, title, desc, onClick = () => {} }) => {
   const theme = useTheme();
@@ -104,17 +105,7 @@ const PatientListItem = ({ id, title, desc, onClick = () => {} }) => {
           >
             Edit
           </Button>
-          <Button
-            variant="outlined"
-            color="error"
-            sx={{
-              margin: "10px",
-              paddingTop: "8px",
-            }}
-            onClick={(event) => handleOnDelete(event)}
-          >
-            Delete
-          </Button>
+          <DeleteAlertDialog onDelete={(event) => handleOnDelete(event)} />
         </>
       </ListItem>
     </>
