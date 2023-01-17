@@ -39,11 +39,8 @@ const PatientForm = () => {
       console.log("response", response);
       if (response && response.error !== null) {
         alert(response.error);
-      } else if (response == null) {
-        alert(
-          "Something went wrong. The email may be used, please use another email."
-        );
       } else {
+        // TODO: check
         navigate(routes.home);
       }
     }
