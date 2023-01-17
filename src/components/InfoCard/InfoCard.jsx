@@ -147,7 +147,7 @@ const InfoCard = ({ props }) => {
                   </Typography>
                   <Chip
                     label={
-                      data.severity === 30
+                      data.severity === 10
                         ? "Low"
                         : data.severity === 20
                         ? "Moderate"
