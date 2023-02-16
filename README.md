@@ -1,12 +1,12 @@
 # Care4U
 
-Care4U serves as the healthcare system.
+Care4U serves as a healthcare system that allows medical professionals to manage patient information.
 
 ## Try it out
 
 Link to application: https://care4u.vercel.app/
 
-<img src="./src/assets/HomePage.png" alt="Home Page" width="400"/>
+<img src="./src/assets/HomePage.png" alt="Home Page" width="600"/>
 
 ## Background
 
