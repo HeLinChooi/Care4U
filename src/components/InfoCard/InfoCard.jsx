@@ -10,10 +10,8 @@ import PageLayout from "@Components/PageLayout";
 
 const InfoCard = ({ props }) => {
   const [data, setData] = useState({});
-  const [medicalRecord, setMedicalRecord] = useState(null);
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [currentPath] = useState(window.location.pathname);
   const currentPathArray = currentPath.split("/");
-  const profileId = currentPathArray[2];
   const [medicalRecordId, setMedicalRecordId] = useState(null);
   const labels = [];
   const values = [];

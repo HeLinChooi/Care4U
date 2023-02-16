@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PatientListItem from "./PatientListItem";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
@@ -13,8 +13,7 @@ import routes from "../../router";
 
 const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
   const navigate = useNavigate();
-  const [pathName, setPathName] = useState("");
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [currentPath] = useState(window.location.pathname);
   const currentPathArray = currentPath.split("/");
   const profileId = currentPathArray[2];
 
@@ -60,7 +59,7 @@ const PatientList = ({ title, list = [], icon, noViewMore = false }) => {
       >
         {list &&
           list.map((item, idx) => {
-            const { id, name, phoneNo } = item;
+            const { id } = item;
             const onClick = () => {
               if (currentPath === "/home") {
                 navigate(routes.patient.replace(":profileId", id));

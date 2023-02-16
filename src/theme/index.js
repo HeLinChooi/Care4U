@@ -4,7 +4,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 import palette from "./palette";
 import typography from "./typography";
-import fontFamily from "./fontFamily";
+// import fontFamily from "./fontFamily";
 
 // const breakpoints = createBreakpoints({});
 
