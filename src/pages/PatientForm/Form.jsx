@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import md from "@Mock/boxShadow";
 import BasicSelect from "./Select";
 
-const Form = ({ onSubmit = (formData) => {} }) => {
+const Form = ({ onSubmit = () => {} }) => {
   const [formData, setFormData] = useState({
     name: "",
     age: "",
