@@ -1,3 +1,5 @@
+> **Warning:** Some dependencies were upgraded to new major versions to fix security vulnerabilities. The app might not work as it did before. These changes only patch the vulnerabilities. The app has not been fully tested after them.
+
 # Care4U
 
 Care4U serves as a healthcare system that allows medical professionals to manage patient information.
